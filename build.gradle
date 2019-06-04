@@ -1,0 +1,35 @@
+buildscript {
+	repositories{ maven{ url "$repos_host" } }
+	dependencies {
+		classpath "onight.osgi:zpp-gradle_1.8:3.3.1"
+        classpath "org.csc:account.api:4.1.4"
+	 }
+}
+plugins {
+	id "com.google.protobuf" version "0.8.8"
+}
+apply plugin: 'zippo'
+
+//Clean up Tree
+version = '4.1.2'
+project.group='org.csc'
+
+dependencies {
+	compile ("org.fc.zippo:org.fc.zippo.oapi:4.0.0")
+	compile "org.csc:account.api:4.1.4"
+	compile ("org.csc:rcvm:4.0.2.1")
+	// compile ("com.google.guava:guava:27.0.1-jre")
+	
+//	includeInJar "com.madgag.spongycastle:core:1.58.0.0"
+	//includeInJar "com.madgag.spongycastle:prov:1.58.0.0"
+
+    
+	//testCompile ("com.sleepycat:je:5.0.73")
+	testCompile ("com.google.protobuf:protobuf-java-util:3.6.1")
+}
+
+jar {
+	manifest{
+		attributes( 'Import-Ignore':'com.google.common')
+	}
+}
